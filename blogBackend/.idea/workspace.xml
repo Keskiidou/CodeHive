@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="576c0523-59ec-47db-9d2c-7def5ae241e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-interface/src/app/[id]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-interface/src/app/forum-add/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-interface/src/app/forumPage/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-interface/src/components/oneForum/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/blog/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/blog/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/src/components/Header/menuData.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/components/Header/menuData.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,31 +35,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2t06Lmu3FQVjxgeiBuPd9bc4G3P" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "Go Build.go build blogBackend.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "last_opened_file_path": "C:/Users/louay chayeb",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/louay chayeb/Desktop/CodeHive/blogBackend/main.go"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Build.go build blogBackend.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;production1&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/louay chayeb&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/louay chayeb/Desktop/CodeHive/blogBackend/main.go&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\louay chayeb\Desktop\CodeHive\blogBackend" />

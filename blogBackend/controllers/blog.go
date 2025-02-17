@@ -8,6 +8,38 @@ import (
 	"log"
 )
 
+func BlogGetOne(c *fiber.Ctx) error {
+	context := fiber.Map{
+		"status": "success",
+		"msg":    "Blog retrieved successfully",
+	}
+
+	// Get the blog ID from the URL params
+	blogID := c.Params("id")
+	var blog models.Blog
+
+	// Find the blog by ID
+	if err := database.DB.First(&blog, blogID).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return c.Status(404).JSON(fiber.Map{
+				"status": "error",
+				"msg":    "Blog not found",
+			})
+		}
+		return c.Status(500).JSON(fiber.Map{
+			"status": "error",
+			"msg":    "Failed to retrieve blog",
+		})
+	}
+
+	// Add the blog record to the context
+	context["blog"] = blog
+
+	// Return the blog in the response
+	c.Status(200)
+	return c.JSON(context)
+}
+
 func BlogList(c *fiber.Ctx) error {
 	context := fiber.Map{
 		"status": "success",
