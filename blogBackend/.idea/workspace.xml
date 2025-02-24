@@ -5,19 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="576c0523-59ec-47db-9d2c-7def5ae241e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../user-interface/src/app/[id]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../user-interface/src/app/forum-add/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../user-interface/src/app/forumPage/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../user-interface/src/components/oneForum/[id].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/controllers/userController.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/database/databaseConnection.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/helpers/authHelper.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/helpers/tokenHelper.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/middleware/authMiddleware.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/models/userModel.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/routes/authRouter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/routes/userRouter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-interface/src/components/CKEditor/Ckeditor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../user-interface/src/components/CKEditor/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../user-interface/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/blog/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/blog/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/src/components/Header/menuData.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/components/Header/menuData.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/signin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/signin/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/signup/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/src/components/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/components/Header/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +64,7 @@
     &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;production1&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/louay chayeb&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/louay chayeb/Desktop/CodeHive/authBackend&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
@@ -67,6 +77,15 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="go build blogBackend" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="blogBackend" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="blogBackend" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build blogBackend" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="blogBackend" />
       <working_directory value="$PROJECT_DIR$" />
