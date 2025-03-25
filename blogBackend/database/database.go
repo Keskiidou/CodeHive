@@ -39,7 +39,7 @@ func ConnectDB() {
 	log.Println("Connected to database successfully")
 
 	// Run AutoMigrate for all models
-	err = DB.AutoMigrate(&model.Blog{}, &model.User{}) // Add User model here
+	err = DB.AutoMigrate(&model.Blog{}) // Add User model here
 	if err != nil {
 		log.Fatalf("Error running migrations: %v", err)
 	}

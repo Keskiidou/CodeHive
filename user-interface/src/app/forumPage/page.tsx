@@ -1,36 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Breadcrumb from "@/components/Common/Breadcrumb"; // Assuming you have this component for the breadcrumb
+import Breadcrumb from "@/components/Common/Breadcrumb"; 
 
 const ForumPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);  // Track the current page
-  const postsPerPage = 10;  // Set posts per page
+  const [currentPage, setCurrentPage] = useState(1);  
+  const postsPerPage = 10;  
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/blog")
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched Data:", data);
-        setBlogs(data.blogrecords); // Update with correct data
-        setLoading(false); // Set loading to false
+        setBlogs(data.blogrecords); 
+        setLoading(false); 
       })
       .catch((error) => {
         console.error("Error fetching blogs:", error);
-        setLoading(false); // Set loading to false even on error
+        setLoading(false); 
       });
   }, []);
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
 
-  // Calculate the posts to display for the current page
+ 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = blogs.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Calculate the total number of pages
   const totalPages = Math.ceil(blogs.length / postsPerPage);
 
   const handleNextPage = () => {

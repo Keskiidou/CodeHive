@@ -5,29 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="576c0523-59ec-47db-9d2c-7def5ae241e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../authBackend/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/controllers/userController.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/database/databaseConnection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/helpers/authHelper.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/helpers/tokenHelper.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/middleware/authMiddleware.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/models/userModel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/routes/authRouter.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/routes/userRouter.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../user-interface/src/components/CKEditor/Ckeditor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../user-interface/src/components/CKEditor/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/blog.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../user-interface/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/signin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/signin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/signup/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../user-interface/src/components/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/components/Header/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

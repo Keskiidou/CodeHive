@@ -5,29 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="571f5733-edd6-4440-8711-8a98071b919e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../authBackend/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/controllers/userController.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/database/databaseConnection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/helpers/authHelper.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/helpers/tokenHelper.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/middleware/authMiddleware.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/models/userModel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/routes/authRouter.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../authBackend/routes/userRouter.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CKEditor/Ckeditor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CKEditor/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../blogBackend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blogBackend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../blogBackend/controllers/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/../blogBackend/controllers/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../blogBackend/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/../blogBackend/database/database.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../blogBackend/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../blogBackend/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../blogBackend/model/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/../blogBackend/model/blog.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/signin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/signin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/signup/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,26 +34,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "production1",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/louay chayeb/Downloads/SpringBoot-auth-JWT--master",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\louay chayeb\\Desktop\\CodeHive\\user-interface\\node_modules\\prettier",
-    "ts.external.directory.path": "C:\\Users\\louay chayeb\\Desktop\\CodeHive\\user-interface\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;production1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/louay chayeb/Downloads/SpringBoot-auth-JWT--master&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\louay chayeb\\Desktop\\CodeHive\\user-interface\\node_modules\\prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\louay chayeb\\Desktop\\CodeHive\\user-interface\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -143,6 +121,7 @@
       <workItem from="1740223497077" duration="7304000" />
       <workItem from="1740326910948" duration="3797000" />
       <workItem from="1740404964466" duration="7987000" />
+      <workItem from="1740594181882" duration="168000" />
     </task>
     <servers />
   </component>
