@@ -4,11 +4,14 @@ import (
 	"blogBackend/database"
 	"blogBackend/router"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 
 	//"fmt"
 	"log"
 )
+
+//go run dev
 
 func main() {
 	// Initialize database connection
@@ -18,6 +21,12 @@ func main() {
 	// Create Fiber app
 	app := fiber.New()
 	app.Use(logger.New())
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowMethods: "GET,POST,PUT,DELETE,OPTIONS",
+		AllowHeaders: "Content-Type, Authorization",
+	}))
 
 	// Health check route
 	router.SetupRouter(app)

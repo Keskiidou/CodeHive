@@ -14,4 +14,6 @@ func SetupRouter(app *fiber.App) {
 	app.Post("/blog", controllers.BlogCreate)
 	app.Delete("/blog", controllers.BlogDelete)
 	app.Put("/blog", controllers.BlogUpdate)
+	app.Get("/blog/:id", controllers.BlogGetOne)
+
 }

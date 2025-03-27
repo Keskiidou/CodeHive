@@ -1,7 +1,6 @@
 package database
 
 import (
-	models "blogBackend/model"
 	"log"
 	"os"
 
@@ -9,6 +8,8 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+
+	"blogBackend/model" // Make sure this matches your actual import path
 )
 
 var DB *gorm.DB
@@ -29,18 +30,21 @@ func ConnectDB() {
 	// Connect to PostgreSQL using GORM
 	var err error
 	DB, err = gorm.Open(postgres.Open(dbURL), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Silent), // Optional: Adjust logging level
+		Logger: logger.Default.LogMode(logger.Silent), // Adjust logging level if needed
 	})
 	if err != nil {
 		log.Fatalf("Failed to connect to the database: %v", err)
 	}
 
 	log.Println("Connected to database successfully")
-	err = DB.AutoMigrate(&models.Blog{})
+
+	// Run AutoMigrate for all models
+	err = DB.AutoMigrate(&model.Blog{}) // Add User model here
 	if err != nil {
-		return
+		log.Fatalf("Error running migrations: %v", err)
 	}
 
+	log.Println("Database migrated successfully")
 }
 
 // CloseDB closes the database connection
