@@ -174,6 +174,7 @@ func Login() gin.HandlerFunc {
 		// Return user details along with generated tokens
 		c.JSON(http.StatusOK, gin.H{
 			"user":         foundUser,
+			"userID":       foundUser.UserID,
 			"token":        token,
 			"refreshToken": refreshToken,
 		})

@@ -1,17 +1,71 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const AddForumPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [author, setAuthor] = useState("");
+  const [author, setAuthor] = useState(""); 
+  const [tags, setTags] = useState<string>(""); 
+  const [authorID, setAuthorID] = useState(""); 
   const router = useRouter();
+
+  // Validate the token on component mount
+  useEffect(() => {
+    const token = localStorage.getItem("token"); 
+
+    if (token) {
+      // Validate token using the API
+      fetch("http://localhost:9000/users/validate-token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message === "Token is valid") {
+            setAuthor(`${data.claims.FirstName} ${data.claims.LastName}`);
+            setAuthorID(data.claims.UserType);
+            console.log('Author:', `${data.claims.FirstName} ${data.claims.LastName}`);
+            console.log('AuthorID:', data.claims.UserType);
+          } else {
+            alert("Invalid token");
+          }
+        })
+        .catch((error) => {
+          console.error("Error validating token:", error);
+          alert("Error validating token");
+        });
+    } else {
+      alert("No token found");
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newForum = { title, content, author };
+    // Check if author and authorID are set
+    if (!author || !authorID) {
+      alert("Author and AuthorID are required");
+      return;
+    }
+
+    // Convert comma-separated tags to an array
+    const tagsArray = tags.split(",").map((tag) => tag.trim());
+
+    // Update the payload to match the model field names
+    const newForum = { 
+      title, 
+      content, 
+      author, 
+      author_id: authorID, // Changed authorID to author_id to match the model
+      tags: tagsArray 
+    };
+
+    // Log the payload to ensure it's correct
+    console.log('Request Payload:', newForum);
 
     try {
       const response = await fetch("http://127.0.0.1:8000/blog", {
@@ -21,13 +75,18 @@ const AddForumPage = () => {
         },
         body: JSON.stringify(newForum),
       });
-
-      if (response.ok) {
+      
+      const responseData = await response.json();
+      
+      console.log("Response data:", responseData); // Log the entire response
+      
+      if (response.status === 200 && responseData.status === "success") {
         alert("Forum added successfully!");
-        router.push("/forumPage");  // Redirect back to the forum page
+        router.push("/forumPage"); // Redirect back to the forum page
       } else {
-        alert("Failed to add forum");
+        alert(`${responseData.msg}`);
       }
+      
     } catch (error) {
       console.error("Error adding forum:", error);
     }
@@ -60,13 +119,14 @@ const AddForumPage = () => {
             />
           </div>
           <div>
-            <label htmlFor="author" className="block font-medium">Author</label>
+            <label htmlFor="tags" className="block font-medium">Tags (comma-separated)</label>
             <input
               type="text"
-              id="author"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
+              id="tags"
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
               className="w-full px-4 py-2 border rounded-md"
+              placeholder="e.g., golang, ai, backend"
             />
           </div>
           <button
