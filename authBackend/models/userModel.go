@@ -19,4 +19,5 @@ type User struct {
 	CreatedAt    time.Time          `json:"created_at" bson:"created_at,omitempty"`
 	UpdatedAt    time.Time          `json:"updated_at" bson:"updated_at,omitempty"`
 	UserID       string             `json:"user_id" bson:"user_id,omitempty"`
+	Skills       []string           `json:"skills" bson:"skills,omitempty"`
 }

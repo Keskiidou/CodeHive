@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="576c0523-59ec-47db-9d2c-7def5ae241e8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../authBackend/controllers/userController.go" beforeDir="false" afterPath="$PROJECT_DIR$/../authBackend/controllers/userController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../authBackend/routes/authRouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/../authBackend/routes/authRouter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/response.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/response.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/blog.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/[id]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../user-interface/src/app/forum-add/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/forum-add/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../user-interface/src/app/forumPage/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/forumPage/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../user-interface/src/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../user-interface/src/app/profile/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

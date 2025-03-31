@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link"; // Import Link component from Next.js
+
 
 const ProfilePage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -8,19 +10,18 @@ const ProfilePage = () => {
   const [error, setError] = useState("");
   const [authorID, setAuthorID] = useState("");
   const [userInfo, setUserInfo] = useState({ firstName: "", lastName: "", email: "" });
+  
   const router = useRouter();
 
-  // Validate the token on component mount
+  // Validate token and fetch user info
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (token) {
-      // Validate token using the API
       fetch("http://localhost:9000/users/validate-token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `${token}`,
+          "Authorization": token,
         },
       })
         .then((response) => response.json())
@@ -28,8 +29,7 @@ const ProfilePage = () => {
           if (data.message === "Token is valid") {
             const { FirstName, LastName, Email, UserType } = data.claims;
             setUserInfo({ firstName: FirstName, lastName: LastName, email: Email });
-            setAuthorID(UserType); // Set the authorID from the validated token
-            console.log('User Info:', data.claims);
+            setAuthorID(UserType);
           } else {
             alert("Invalid token");
           }
@@ -43,14 +43,14 @@ const ProfilePage = () => {
     }
   }, []);
 
+  // Fetch blogs by authorID
   useEffect(() => {
     if (authorID) {
-      // Fetch blogs by authorID once the authorID is set
       fetch(`http://127.0.0.1:8000/blogs/author/${authorID}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.status === "success") {
-            setBlogs(data.blogs); // Assuming the API returns a list of blogs
+            setBlogs(data.blogs);
           } else {
             setError("No blogs found or error occurred");
           }
@@ -72,9 +72,7 @@ const ProfilePage = () => {
         const response = await fetch(`http://127.0.0.1:8000/blogs/${blogId}`, {
           method: "DELETE",
         });
-
         const data = await response.json();
-
         if (response.status === 200 && data.status === "success") {
           alert("Blog deleted successfully!");
           setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== blogId));
@@ -89,34 +87,58 @@ const ProfilePage = () => {
   };
 
   return (
-    <section className="pb-[120px] pt-[120px]">
-      <div className="container">
-        <h1 className="text-2xl font-bold mb-4">Your Profile</h1>
-
-        {/* Display user information */}
-        <div className="mb-6">
-          <p className="text-lg">Name: {userInfo.firstName} {userInfo.lastName}</p>
-          <p className="text-lg">Email: {userInfo.email}</p>
+    <section className="min-h-screen bg-gradient-to-br from-purple-500 to-indigo-600 dark:from-gray-800 dark:to-gray-900 text-white py-12">
+      {/* Profile Hero Section */}
+      <div className="container mx-auto px-4 mb-12">
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-xl flex items-center space-x-6">
+          <div className="w-20 h-20 rounded-full bg-indigo-500 flex items-center justify-center text-3xl font-bold text-white">
+            {userInfo.firstName.charAt(0)}
+            {userInfo.lastName.charAt(0)}
+          </div>
+          <div>
+            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+              {userInfo.firstName} {userInfo.lastName}
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300">{userInfo.email}</p>
+          </div>
+          <Link href="/becomeTutor">
+            <button className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
+              Become a Tutor
+            </button>
+          </Link>
         </div>
+      </div>
 
-        {loading && <p>Loading blogs...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-
+      {/* Blogs Section */}
+      <div className="container mx-auto px-4">
+        {loading && (
+          <div className="flex justify-center items-center">
+            <div className="w-10 h-10 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+          </div>
+        )}
+        {error && <p className="text-red-300 text-center">{error}</p>}
         {blogs.length > 0 ? (
-          <div className="space-y-4">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {blogs.map((blog) => (
-              <div key={blog.id} className="border p-4 rounded-md shadow-md">
-                <h2 className="text-xl font-semibold">{blog.title}</h2>
-                <p>{blog.content}</p>
-                <p className="mt-2 text-gray-500">
+              <div
+                key={blog.id}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition duration-500 hover:scale-105"
+              >
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                  {blog.title}
+                </h2>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  {blog.content.substring(0, 100)}...
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
                   Tags: {blog.tags.join(", ")}
                 </p>
-                <p className="mt-2 text-gray-400 text-sm">
+                <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">
                   Created on: {new Date(blog.created_at).toLocaleDateString()}
                 </p>
                 <button
                   onClick={() => handleDelete(blog.id)}
-                  className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                  className="w-full py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition duration-300"
                 >
                   Delete Blog
                 </button>
@@ -124,7 +146,7 @@ const ProfilePage = () => {
             ))}
           </div>
         ) : (
-          <p>No blogs found.</p>
+          !loading && <p className="text-center text-gray-200">No blogs found.</p>
         )}
       </div>
     </section>

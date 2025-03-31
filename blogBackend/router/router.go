@@ -16,4 +16,10 @@ func SetupRouter(app *fiber.App) {
 	app.Delete("/blogs/:id", controllers.BlogDelete)
 	app.Get("/blog/:id", controllers.BlogGetOne)
 	app.Get("/blogs/author/:author_id", controllers.BlogGetByAuthorID)
+
+	// Response routes
+	responseGroup := app.Group("/response")
+	responseGroup.Get("/:blog_id", controllers.GetResponsesByBlogID)
+	responseGroup.Post("/create", controllers.CreateResponse)
+	responseGroup.Delete("/:id", controllers.DeleteResponse)
 }

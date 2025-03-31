@@ -45,26 +45,20 @@ const AddForumPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Check if author and authorID are set
     if (!author || !authorID) {
       alert("Author and AuthorID are required");
       return;
     }
-
-    // Convert comma-separated tags to an array
     const tagsArray = tags.split(",").map((tag) => tag.trim());
 
-    // Update the payload to match the model field names
     const newForum = { 
       title, 
       content, 
       author, 
-      author_id: authorID, // Changed authorID to author_id to match the model
+      author_id: authorID, 
       tags: tagsArray 
     };
 
-    // Log the payload to ensure it's correct
     console.log('Request Payload:', newForum);
 
     try {
@@ -78,11 +72,11 @@ const AddForumPage = () => {
       
       const responseData = await response.json();
       
-      console.log("Response data:", responseData); // Log the entire response
+      console.log("Response data:", responseData); 
       
       if (response.status === 200 && responseData.status === "success") {
         alert("Forum added successfully!");
-        router.push("/forumPage"); // Redirect back to the forum page
+        router.push("/forumPage"); 
       } else {
         alert(`${responseData.msg}`);
       }
