@@ -1,7 +1,9 @@
 import { Blog } from "@/types/blog";
 import Link from "next/link";
+import { FaMessage } from "react-icons/fa6";
 
 const SingleBlog = ({ blog }: { blog: Blog }) => {
+
   const { title, paragraph, tags } = blog;
   return (
     <>
@@ -36,10 +38,19 @@ const SingleBlog = ({ blog }: { blog: Blog }) => {
             <button className="px-6 py-2 text-white bg-primary rounded-md hover:bg-opacity-90 transition">
               Contact Now
             </button>
+
           </div>
+          {/* Message Icon */}
+          <Link
+            href="/blog-details"
+            className="mb-4 block text-xl font-bold text-black hover:text-primary dark:text-white dark:hover:text-primary sm:text-2xl"
+          >
+            <FaMessage className="inline-block mr-2" />
+          </Link>
+
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
