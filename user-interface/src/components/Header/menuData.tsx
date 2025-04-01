@@ -26,6 +26,12 @@ const menuData: Menu[] = [
 
   },
   {
+    id: 69,
+    title: "All Tutors",        
+    path: "/blog",
+    newTab: false,
+  },
+  {
     id: 4,
     title: "Pages",
     newTab: false,
