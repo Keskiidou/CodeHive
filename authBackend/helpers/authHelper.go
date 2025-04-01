@@ -2,14 +2,20 @@ package helpers
 
 import (
 	"errors"
+	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
 // CheckUserType verifies the user type in the context.
 func CheckUserType(c *gin.Context, role string) (err error) {
-	userType := c.GetString("userType") // Consistent key
+	userType := c.GetString("userType")
 	err = nil
+	if userType == "" {
+		fmt.Println("userType not found in context")
+		return errors.New("unauthorized to access this resource")
+	}
 	if userType != role {
+		fmt.Println("User type mismatch. Expected:", role, "but got:", userType)
 		err = errors.New("unauthorized to access this resource")
 		return err
 	}
@@ -22,6 +28,7 @@ func MatchUserTypeToUid(c *gin.Context, userId string) (err error) {
 	uid := c.GetString("uid")           // Consistent key
 	err = nil
 	if userType == "USER" && uid != userId {
+		fmt.Println("User ID mismatch. Expected:", userId, "but got:", uid)
 		err = errors.New("Unauthorized to access this resource")
 		return err
 	}

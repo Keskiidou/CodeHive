@@ -2,7 +2,6 @@ package middleware
 
 import (
 	helper "authBackend/helpers"
-
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
@@ -32,12 +31,11 @@ func Authenticate() gin.HandlerFunc {
 			return
 		}
 
-		// Set values in the context with consistent keys
 		c.Set("email", claims.Email)
 		c.Set("first_name", claims.FirstName)
 		c.Set("last_name", claims.LastName)
 		c.Set("uid", claims.Uid)
-		c.Set("userType", claims.UserType) // Consistent key naming
+		c.Set("userType", claims.UserType)
 
 		c.Next()
 	}

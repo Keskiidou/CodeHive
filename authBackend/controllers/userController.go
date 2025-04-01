@@ -182,11 +182,11 @@ func Login() gin.HandlerFunc {
 
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		err := helper.CheckUserType(c, "ADMIN")
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
+		//err := helper.CheckUserType(c, "ADMIN")
+		//if err != nil {
+		//	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		//	return
+		//}
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
@@ -234,8 +234,32 @@ func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		userId := c.Param("user_id")
 
-		if err := helper.MatchUserTypeToUid(c, userId); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		//if err := helper.MatchUserTypeToUid(c, userId); err != nil {
+		//	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		//	return
+		//}
+
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		defer cancel()
+		var user models.User
+
+		err := userCollection.FindOne(ctx, bson.M{"user_id": userId}).Decode(&user)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, user)
+	}
+}
+func GetUserDetailByName() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		firstName := c.DefaultQuery("firstname", "")
+		lastName := c.DefaultQuery("lastname", "")
+
+		if firstName == "" || lastName == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Both first_name and last_name are required"})
 			return
 		}
 
@@ -243,7 +267,7 @@ func GetUser() gin.HandlerFunc {
 		defer cancel()
 		var user models.User
 
-		err := userCollection.FindOne(ctx, bson.M{"userId": userId}).Decode(&user)
+		err := userCollection.FindOne(ctx, bson.M{"firstname": firstName, "lastname": lastName}).Decode(&user)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
