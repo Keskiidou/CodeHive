@@ -174,6 +174,7 @@ func Login() gin.HandlerFunc {
 		// Return user details along with generated tokens
 		c.JSON(http.StatusOK, gin.H{
 			"user":         foundUser,
+			"userID":       foundUser.UserID,
 			"token":        token,
 			"refreshToken": refreshToken,
 		})
@@ -182,11 +183,7 @@ func Login() gin.HandlerFunc {
 
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		//err := helper.CheckUserType(c, "ADMIN")
-		//if err != nil {
-		//	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		//	return
-		//}
+
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
@@ -234,10 +231,6 @@ func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		userId := c.Param("user_id")
 
-		//if err := helper.MatchUserTypeToUid(c, userId); err != nil {
-		//	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		//	return
-		//}
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
@@ -246,6 +239,7 @@ func GetUser() gin.HandlerFunc {
 		err := userCollection.FindOne(ctx, bson.M{"user_id": userId}).Decode(&user)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+
 			return
 		}
 
@@ -274,5 +268,99 @@ func GetUserDetailByName() gin.HandlerFunc {
 		}
 
 		c.JSON(http.StatusOK, user)
+	}
+}
+func UpgradeUserToTutor() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		defer cancel()
+
+		userID := c.Param("user_id") // Get user ID from request parameter
+		var requestBody struct {
+			Skills []string `json:"skills" validate:"required"` // Expecting skills from the request
+		}
+
+		// Bind request body
+		if err := c.BindJSON(&requestBody); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body: " + err.Error()})
+			return
+		}
+
+		// Validate that skills are provided
+		if len(requestBody.Skills) == 0 {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Skills cannot be empty"})
+			return
+		}
+
+		// Find the user by ID
+		objID, err := primitive.ObjectIDFromHex(userID)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID format"})
+			return
+		}
+
+		var user models.User
+		err = userCollection.FindOne(ctx, bson.M{"_id": objID}).Decode(&user)
+		if err != nil {
+			c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+			return
+		}
+
+		// Check if the user is already a TUTOR
+		if user.UserType != nil && *user.UserType == "TUTOR" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "User is already a tutor"})
+			return
+		}
+
+
+		err := userCollection.FindOne(ctx, bson.M{"firstname": firstName, "lastname": lastName}).Decode(&user)
+
+		// Update user to TUTOR and set skills
+		update := bson.M{
+			"$set": bson.M{
+				"usertype":   "TUTOR",
+				"skills":     requestBody.Skills,
+				"updated_at": time.Now(),
+			},
+		}
+
+		result, err := userCollection.UpdateOne(ctx, bson.M{"_id": objID}, update)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update user"})
+			return
+		}
+
+		if result.ModifiedCount == 0 {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "No changes made"})
+			return
+		}
+
+		c.JSON(http.StatusOK, gin.H{"message": "User upgraded to tutor successfully", "user_id": userID, "skills": requestBody.Skills})
+	}
+}
+func GetAllTutors() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		defer cancel()
+
+		// Define a filter to get only users with usertype "TUTOR"
+		filter := bson.M{"usertype": "TUTOR"}
+
+		// Find tutors in the database
+		cursor, err := userCollection.Find(ctx, filter)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error retrieving tutors"})
+			return
+		}
+		defer cursor.Close(ctx)
+
+		var tutors []models.User
+		if err := cursor.All(ctx, &tutors); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error decoding tutor data"})
+			return
+		}
+
+		c.JSON(http.StatusOK, gin.H{"tutors": tutors})
 	}
 }

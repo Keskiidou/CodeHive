@@ -23,15 +23,14 @@ func CheckUserType(c *gin.Context, role string) (err error) {
 }
 
 // MatchUserTypeToUid checks if the user type and ID match in the context.
-func MatchUserTypeToUid(c *gin.Context, userId string) (err error) {
+func MatchUserTypeToUid(c *gin.Context) (err error) {
 	userType := c.GetString("userType") // Consistent key
-	uid := c.GetString("uid")           // Consistent key
+
 	err = nil
-	if userType == "USER" && uid != userId {
-		fmt.Println("User ID mismatch. Expected:", userId, "but got:", uid)
+	if userType != "ADMIN" {
 		err = errors.New("Unauthorized to access this resource")
 		return err
 	}
-	CheckUserType(c, userType)
+	//CheckUserType(c, userType)
 	return err
 }
