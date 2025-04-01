@@ -184,6 +184,7 @@ func Login() gin.HandlerFunc {
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
+
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 
@@ -230,11 +231,37 @@ func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		userId := c.Param("user_id")
 
+
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 		var user models.User
 
 		err := userCollection.FindOne(ctx, bson.M{"user_id": userId}).Decode(&user)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+
+			return
+		}
+
+		c.JSON(http.StatusOK, user)
+	}
+}
+func GetUserDetailByName() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		firstName := c.DefaultQuery("firstname", "")
+		lastName := c.DefaultQuery("lastname", "")
+
+		if firstName == "" || lastName == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Both first_name and last_name are required"})
+			return
+		}
+
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		defer cancel()
+		var user models.User
+
+		err := userCollection.FindOne(ctx, bson.M{"firstname": firstName, "lastname": lastName}).Decode(&user)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
@@ -285,6 +312,9 @@ func UpgradeUserToTutor() gin.HandlerFunc {
 			return
 		}
 
+
+		err := userCollection.FindOne(ctx, bson.M{"firstname": firstName, "lastname": lastName}).Decode(&user)
+
 		// Update user to TUTOR and set skills
 		update := bson.M{
 			"$set": bson.M{
@@ -295,6 +325,7 @@ func UpgradeUserToTutor() gin.HandlerFunc {
 		}
 
 		result, err := userCollection.UpdateOne(ctx, bson.M{"_id": objID}, update)
+
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update user"})
 			return
