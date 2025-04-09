@@ -180,6 +180,60 @@ func Login() gin.HandlerFunc {
 		})
 	}
 }
+func AdminLogin() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		defer cancel()
+		var user models.User
+		var foundUser models.User
+
+		// Bind JSON
+		if err := c.BindJSON(&user); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		// Check if the email exists
+		err := userCollection.FindOne(ctx, bson.M{"email": user.Email}).Decode(&foundUser)
+		if err != nil {
+			if err == mongo.ErrNoDocuments {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid email or password"})
+				return
+			}
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error finding user"})
+			return
+		}
+
+		// Check password
+		passwordIsValid, msg := VerifyPassword(*user.Password, *foundUser.Password)
+		if !passwordIsValid {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": msg})
+			return
+		}
+
+		// Ensure the user is an admin
+		if *foundUser.UserType != "ADMIN" {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Access restricted to admin users only"})
+			return
+		}
+
+		// Generate and update tokens
+		token, refreshToken, err := helper.GenerateAllTokens(*foundUser.Email, *foundUser.FirstName, *foundUser.LastName, *foundUser.UserType, foundUser.UserID)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error generating tokens"})
+			return
+		}
+		helper.UpdateAllTokens(token, refreshToken, foundUser.UserID)
+
+		// Return response
+		c.JSON(http.StatusOK, gin.H{
+			"user":         foundUser,
+			"userID":       foundUser.UserID,
+			"token":        token,
+			"refreshToken": refreshToken,
+		})
+	}
+}
 
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -243,71 +297,7 @@ func GetUser() gin.HandlerFunc {
 		c.JSON(http.StatusOK, user)
 	}
 }
-func UpgradeUserToTutor() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
-		defer cancel()
 
-		userID := c.Param("user_id") // Get user ID from request parameter
-		var requestBody struct {
-			Skills []string `json:"skills" validate:"required"` // Expecting skills from the request
-		}
-
-		// Bind request body
-		if err := c.BindJSON(&requestBody); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body: " + err.Error()})
-			return
-		}
-
-		// Validate that skills are provided
-		if len(requestBody.Skills) == 0 {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "Skills cannot be empty"})
-			return
-		}
-
-		// Find the user by ID
-		objID, err := primitive.ObjectIDFromHex(userID)
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID format"})
-			return
-		}
-
-		var user models.User
-		err = userCollection.FindOne(ctx, bson.M{"_id": objID}).Decode(&user)
-		if err != nil {
-			c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
-			return
-		}
-
-		// Check if the user is already a TUTOR
-		if user.UserType != nil && *user.UserType == "TUTOR" {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "User is already a tutor"})
-			return
-		}
-
-		// Update user to TUTOR and set skills
-		update := bson.M{
-			"$set": bson.M{
-				"usertype":   "TUTOR",
-				"skills":     requestBody.Skills,
-				"updated_at": time.Now(),
-			},
-		}
-
-		result, err := userCollection.UpdateOne(ctx, bson.M{"_id": objID}, update)
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update user"})
-			return
-		}
-
-		if result.ModifiedCount == 0 {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "No changes made"})
-			return
-		}
-
-		c.JSON(http.StatusOK, gin.H{"message": "User upgraded to tutor successfully", "user_id": userID, "skills": requestBody.Skills})
-	}
-}
 func GetAllTutors() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)

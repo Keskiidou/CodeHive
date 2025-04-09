@@ -10,8 +10,14 @@ import (
 func AuthRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.POST("users/signup", controller.Signup())
 	incomingRoutes.POST("users/login", controller.Login())
+	incomingRoutes.POST("users/adminlogin", controller.AdminLogin())
 	incomingRoutes.PUT("users/updateToTutor/:user_id", controller.UpgradeUserToTutor())
 	incomingRoutes.GET("users/getAllTutors", controller.GetAllTutors())
+	incomingRoutes.GET("/users", controller.GetUsers())
+
+	incomingRoutes.POST("sendRequest", controller.SendTutorRequest())
+	incomingRoutes.DELETE("deleteRequest/:request_id", controller.DeleteTutorRequest())
+	incomingRoutes.GET("getAllRequests", controller.GetAllTutorRequests())
 	incomingRoutes.POST("users/validate-token", func(c *gin.Context) {
 		// Get token from request headers or body
 		token := c.GetHeader("Authorization")

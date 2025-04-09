@@ -10,6 +10,7 @@ import (
 
 func Authenticate() gin.HandlerFunc {
 	return func(c *gin.Context) {
+
 		authHeader := c.Request.Header.Get("Authorization")
 		if authHeader == "" {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorization header is missing"})

@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="571f5733-edd6-4440-8711-8a98071b919e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/controllers/requestController.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../authBackend/models/request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authBackend/controllers/userController.go" beforeDir="false" afterPath="$PROJECT_DIR$/../authBackend/controllers/userController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authBackend/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../authBackend/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authBackend/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../authBackend/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authBackend/middleware/authMiddleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/../authBackend/middleware/authMiddleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authBackend/routes/authRouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/../authBackend/routes/authRouter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authBackend/routes/userRouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/../authBackend/routes/userRouter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/becomeTutor/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/becomeTutor/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Blog/SingleBlog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Blog/SingleBlog.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +131,7 @@
       <workItem from="1740326910948" duration="3797000" />
       <workItem from="1740404964466" duration="7987000" />
       <workItem from="1740594181882" duration="168000" />
+      <workItem from="1744124468481" duration="28000" />
     </task>
     <servers />
   </component>
